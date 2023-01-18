@@ -1,9 +1,4 @@
-<?php
-function calculNumb($n1,$n2)
-{
-    $numb = $
-}
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,27 +9,36 @@ function calculNumb($n1,$n2)
 </head>
 <body>
 <?php
-    if(isset($_POST['submit']))
+    session_start();
+    if(isset($_POST['button_calc']))
     {
-        
+       echo "Bonjour Calculette!!" ;
+        $n1 = $_POST['n1'];
+        $n2 = $_POST['n2'];
+        $op = $_POST['op'];
+        if($op =="+")
+            {
+                $r = $n1+$n2;
+            }
+            else if($op =="-")
+            {
+                $r = $n1-$n2;
+            }
+            else if($op == "*")
+            {
+                $r =  $n1*$n2;
+            }
+            else if($op =="/")
+            {
+                $r = $n1/$n2;
+            }
+            echo '$r';
+            $_SESSION['resultat'] = $r;
     }
     
-    if($op=="+")
-    {
-        echo $n1+$n2
-    }
-    else if($op=="-")
-    {
-        echo $n1-$n2
-    }
-    else if($op=="*")
-    {
-        echo $n1*$n2
-    }
-    if($op=="/")
-    {
-        echo $n1/$n2
-    }
+
+    
+    
     
 ?>
 <form method="post" action="">
@@ -43,8 +47,10 @@ function calculNumb($n1,$n2)
         <br/>
         <label for="n2">n2</label>
         <input type="text" name="n2" value="<?php if(isset($_POST['n2'])) echo $_POST['n2'];?>"/>
+        <label for="op">op</label>
+        <input type="text" name="op" value="<?php if(isset($_POST['op'])) echo $_POST['op'];?>"/>
         <br/>
-        <button type="submit" name="submit">Calculer</button>
+        <button type="submit" name="button_calc">Calculer</button>
     </form>
 </body>
 </html>
